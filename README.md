@@ -2,13 +2,15 @@
 
 ![Alt Text](fraudtagger_m5cardputer.png)
 
+An application that uses M5Cardputer to interact with the FraudTagger 1bn Tojen Foundation Model API for scoring email usernames for traces of machine generation and fraudulence. This project includes code for managing Wi-Fi connectivity, Entering usernames with the keyboard, making API requests, and displaying scores on the M5Cardputer's screen.
+
 ## 🔐 API Usage & Fair Use
 
-FraudTagger is free to use under the MIT license for personal, educational, and prototyping purposes.
+M5Cardputer-FraudTagger is free to use under the MIT license for personal, educational, and prototyping purposes.
 
 The included Cardputer app connects to the hosted **FraudTagger API**, which is free to use for up to **10 email checks per day**.
 
-Beyond this, please [view the API plans](https://toridion.com/fraudtagger) or [contact us](https://toridion.com/contact) to license for commercial use.
+Beyond this, please [view the API plans](https://toridion.com/fraudtagger) for license details for commercial use.
 
 The source code may be modified and redistributed under the terms of the MIT license, but **abuse of the free API tier (e.g., bulk use, bypassing limits)** may result in access being restricted.
 
