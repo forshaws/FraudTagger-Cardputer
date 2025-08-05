@@ -52,6 +52,7 @@ bool inError = false;
 String ssid = "";
 String password = "";
 String apiKey = "<YOUR_API_KEY>";
+String apiKeyBackup = "<YOUR_API_KEY>";
 
 void setup() {
   auto cfg = M5.config();
@@ -70,7 +71,7 @@ void setup() {
 
   M5.Lcd.setRotation(1);
   M5.Lcd.setBrightness(200);
-  M5.Lcd.drawPngFile(SD, "/fraudtaggerwallpaper.png");
+  M5.Lcd.drawPngFile(SD, "/fraudtagger_loading_screen.png");
   delay(3000);
 
  
@@ -120,6 +121,7 @@ void setup() {
       password = line.substring(9);
     } else if (line.startsWith("apikey=")) {
       apiKey = line.substring(7);
+      apiKeyBackup = line.substring(7);
       if (apiKey != "<YOUR_API_KEY>") {
         isDemo = false;
       }
@@ -157,6 +159,34 @@ void setup() {
 
 void loop() {
   M5Cardputer.update();
+
+   // Handle GO button (BtnA) to force free API mode
+  if (M5Cardputer.BtnA.wasPressed()) {
+
+      apiKey = "<YOUR_API_KEY>";
+      isDemo = true;
+      inError = false;
+      M5Cardputer.Display.clear();
+      M5.Lcd.setRotation(1);
+      M5.Lcd.setBrightness(200);
+      M5.Lcd.drawPngFile(SD, "/fraudtaggerwallpaper.png");
+        M5Cardputer.Display.setCursor(0, 0);
+      M5Cardputer.Display.setTextSize(2);
+      M5Cardputer.Display.setTextColor(WHITE);
+      M5Cardputer.Display.println("FREE mode.\nReboot to\nswitch back.");
+      delay(2000);
+      M5Cardputer.Display.clear();
+      M5.Lcd.setRotation(1);
+      M5.Lcd.setBrightness(200);
+      M5.Lcd.drawPngFile(SD, "/fraudtaggerwallpaper.png");
+        M5Cardputer.Display.setCursor(0, 0);
+      drawUI();
+      return;  // Optional: skip rest of loop after switch
+    
+
+
+
+  }
 
   if (M5Cardputer.Keyboard.isChange() && M5Cardputer.Keyboard.isPressed()) {
     Keyboard_Class::KeysState status = M5Cardputer.Keyboard.keysState();
@@ -279,10 +309,10 @@ void sendRequest(String username) {
 
       responseText = "Score: " + String(score, 1) + "\nClass: " + classification;
       if (score >= 5.0 || String(classification) == "SPAM") {
-        responseText += "\nLikely SPAM";
+        responseText += "\n";
         isFraud = true;
       } else {
-        responseText += "\nLikely NOT SPAM";
+        responseText += "\n";
         isFraud = false;
       }
     } else {

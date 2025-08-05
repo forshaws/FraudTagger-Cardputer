@@ -1,3 +1,7 @@
+## ⌨️ M5Cardputer Fraud Detection with FraudTagger API ##
+
+![Alt Text](fraudtagger_m5cardputer.png)
+
 ## 🔐 API Usage & Fair Use
 
 FraudTagger is free to use under the MIT license for personal, educational, and prototyping purposes.
